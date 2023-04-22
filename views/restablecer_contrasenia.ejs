@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resourse/css/reestablecer.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    <title>Restablecer contraseña</title>
+</head>
+<body>
+
+    <h2>Restablecer Contraseña</h2>
+	<form id="registerlogin">
+		<label for="usuario">Usuario:</label>
+		<input type="text" name="usuario" id="username"><br>
+		<label for="password">  Nueva Contraseña:</label>
+		<input type="password" name="password" id="password"><br>
+    <label for="password">Confirmar Contraseña:</label>
+		<input type="password" name="confirmacionContrasena" id="confimacionContraseña"><br>
+		<button type="submit">Registrar</button>
+	</form>
+   
+  <img src="resourse/img/3201052.png" alt="registro">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+  <script>
+
+   //conexion api
+	      const form = document.getElementById('registerlogin');
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+        
+          const user = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          const password2 = document.getElementById('confimacionContraseña').value;
+          
+          if (user === '' || password === ''|| password2 === '') {
+    Swal.fire('CAMPOS VACIOS');
+  }else if (password !== password2) {
+    Swal.fire('La contraseña no coincide');
+    return false;
+  }else {
+            fetch('http://localhost:3000/api/register', {
+            method: 'POST',
+            body: JSON.stringify({ user, password }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then( response => {
+          
+            if (response.ok) { 
+              Swal.fire({
+                title: 'Exitosa!',
+                icon: 'success',
+                html:`se restablecio la contraseña!`,
+                showCloseButton: true,
+                focusConfirm: false,
+                reverseButtons: true,
+                focusCancel: true,
+                confirmButtonText:`Confimar`
+              }).then((result) => {
+                if (result.value) {
+                  window.location.href = '/index.html';
+                }
+              }); 
+
+} else  {
+    Swal.fire({
+                title: 'Error!',
+                icon: 'warning',
+                html:`Usted no esta registrado`,
+                showCloseButton: true,
+                focusConfirm: false,
+                reverseButtons: true,
+                focusCancel: true,
+                confirmButtonText:`Confimar`
+              }).then((result) => {
+                if (result.value) {
+                  window.location.href = '/';
+                }
+              }); 
+
+
+
+  Swal.fire({title: 'Este usuario no esta registrado !',
+                icon: 'warning',
+  })
+       
+}
+          })
+          }
+
+          
+   
+});
+        
+
+   
+  </script>
+</body>
+</html>
