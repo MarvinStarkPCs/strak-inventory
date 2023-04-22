@@ -1,0 +1,68 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #0f4c75;
+}
+
+h2 {
+	text-align: center;
+	margin-top: 50px;
+	color: #ffffff;
+}
+
+form {
+	margin: auto;
+	max-width: 500px;
+	padding: 20px;
+	background-color: #3282b8;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #ccc;
+	box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+	
+}
+form input::placeholder {
+    font-family: 'Overpass', sans-serif;
+    color: #E4E4E4;}
+
+label {
+	display: block;
+	margin-top: 10px;
+}
+
+input[type="text"],
+
+input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: #fff;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+
+button[type="submit"] {
+	background-color: #bbe1fa;
+	color: #000000;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+button[type="submit"]:hover {
+	background-color: #0f4c75;
+}
+img{
+
+	width: 200px;
+	height: 200px;
+	/* centrado vertical */
+	position: absolute;
+	left: 24%;
+	bottom: 60%;
+	margin-top: -25px; /* (- menos) la mitad del valor de la altura del elemento hijo */
+  }
